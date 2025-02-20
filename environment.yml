@@ -5,6 +5,7 @@ channels:
   - anaconda
   - conda-forge
   - defaults
+  - soumith # Add the soumith channel for pytorch
 dependencies:
   - ca-certificates=2019.5.15=1
   - certifi=2019.6.16=py37_1
@@ -67,7 +68,7 @@ dependencies:
   - readline=7.0=hf8c457e_1001
   - resampy=0.2.2=py_0
   - scikit-learn=0.21.3=py37hcdab131_0
-  - setuptools=41.2.0=py37_y
+  - setuptools=41.2.0=py37_0
   - sip=4.19.8=py37hf484d3e_1000
   - six=1.12.0=py37_1000
   - sqlite=3.28.0=h8b20d00_0
@@ -83,7 +84,7 @@ dependencies:
   - _libgcc_mutex=0.1=main
   - coverage=4.5.2=py37h7b6447c_0
   - intel-openmp=2019.4=243
-  - libgcc-ng=9.1.0=hdf63c60_0
+  - libgcc-ng=9.4.0=hdf63c60_0
   - libgfortran-ng=7.3.0=hdf63c60_0
   - libprotobuf=3.6.1=hd408876_0
   - libstdcxx-ng=9.1.0=hdf63c60_0
@@ -100,5 +101,5 @@ dependencies:
   - pip:
     - textgrid==1.4
     - torch==1.0.0
-prefix: /home/guanlong/anaconda2/envs/ppg-speech
+prefix: /home/tang/miniconda3/envs/ppg-speech
 
