@@ -57,7 +57,7 @@ def create_hparams(**kwargs):
         "output_directory": '/home/tang/PPG-Mel/fac-via-ppg/src/script/output/ppg-koren-YKWK',  # Directory to save checkpoints.
         # Directory to save tensorboard logs. Just keep it like this.
         "log_directory": '/home/tang/PPG-Mel/fac-via-ppg/src/script/output/ppg-koren-YKWK/logs',
-        "checkpoint_path": '/home/tang/PPG-Mel/fac-via-ppg/src/script/output/ppg-koren-YKWK/checkpoint_145000',  # Path to a checkpoint file. # 53000 + 145000 + 100000
+        "checkpoint_path": '/home/tang/PPG-Mel/fac-via-ppg/src/script/output/ppg-koren-YKWK/checkpoint_145000',  # Path to a checkpoint file. # 53000 + 145000 + 145000
         "warm_start": True,  # Load the model only (warm start)
         "n_gpus": 1,  # Number of GPUs
         "rank": 0,  # Rank of current gpu
