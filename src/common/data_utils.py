@@ -271,6 +271,19 @@ class PPGMelLoader(torch.utils.data.Dataset):
         else:
             curr_ppg = self.ppg_sequences[index][
                        0::self.ppg_subsampling_factor, :]
+        
+        # --DEBUG--
+        # wav_path = self.data_utterance_paths[index]
+        # # Get PPG (subsampled if needed)
+        # ppg = curr_ppg
+
+        # # Get Mel
+        # mel = self.acoustic_sequences[index]
+            
+        # print("[DEBUG] utterance:", wav_path)
+        # print("[DEBUG] PPG shape:", ppg.shape, "mean:", ppg.mean(), "std:", ppg.std())
+        # print("[DEBUG] Mel shape:", mel.shape, "mean:", mel.mean(), "std:", mel.std())
+        # --DEBUG--
 
         return torch.from_numpy(curr_ppg), self.acoustic_sequences[index]
 

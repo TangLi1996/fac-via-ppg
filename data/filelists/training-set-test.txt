@@ -1,0 +1,10 @@
+/home/tang/PPG-Mel/fac-via-ppg/recordings/L1/arctic_b0089.wav
+/home/tang/PPG-Mel/fac-via-ppg/recordings/L1/arctic_b0049.wav
+/home/tang/PPG-Mel/fac-via-ppg/recordings/L1/arctic_b0025.wav
+/home/tang/PPG-Mel/fac-via-ppg/recordings/L1/arctic_b0377.wav
+/home/tang/PPG-Mel/fac-via-ppg/recordings/L1/arctic_b0280.wav
+/home/tang/PPG-Mel/fac-via-ppg/recordings/L1/arctic_a0260.wav
+/home/tang/PPG-Mel/fac-via-ppg/recordings/L1/arctic_a0080.wav
+/home/tang/PPG-Mel/fac-via-ppg/recordings/L1/arctic_a0065.wav
+/home/tang/PPG-Mel/fac-via-ppg/recordings/L1/arctic_a0387.wav
+/home/tang/PPG-Mel/fac-via-ppg/recordings/L1/arctic_a0253.wav

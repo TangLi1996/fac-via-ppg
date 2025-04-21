@@ -88,12 +88,17 @@ if __name__ == '__main__':
     if os.path.isfile(teacher_utt_path):
         logging.info('Perform AC on %s', teacher_utt_path)
         teacher_ppg = get_ppg(teacher_utt_path, deps)
+        print("[DEBUG] teacher_ppg shape:", teacher_ppg.shape)
         ac_mel = get_inference(teacher_ppg, tacotron_model, is_clip)
+        print("[DEBUG] ac_mel shape:", ac_mel.shape)
         ac_wav = waveglow_audio(ac_mel, waveglow_model,
                                 waveglow_sigma, True)
+        print("[DEBUG] Output from WaveGlow:", ac_wav.shape)
         ac_wav = denoiser(
             ac_wav, strength=denoiser_strength)[:, 0].cpu().numpy().T
-
+        # Save the ac_mel to confirm
+        mel_output_file = os.path.join(output_dir, 'ac_mel.npy')
+        torch.save(ac_mel, mel_output_file)
         output_file = os.path.join(output_dir, 'ac.wav')
         wavfile.write(output_file, fs, ac_wav)
     else:

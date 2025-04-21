@@ -254,3 +254,52 @@ class DependenciesPPG(object):
             logging.warning("Splice options are empty.")
         self.left_context = context[0]
         self.right_context = context[1]
+
+
+# Test
+
+# if __name__ == "__main__":
+#     import numpy as np
+
+#     # 🔧 Set your test .wav file path and output
+#     wav_path = "/home/tang/PPG-Mel/fac-via-ppg/recordings/koren_HJK/arctic_a0002.wav"
+#     output_path = "/home/tang/PPG-Mel/fac-via-ppg/src/ppg/output/ppg_test_output_arctic_a0002.npy"
+
+#     # Create output directory if it doesn't exist
+#     os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+#     print("[INFO] Loading dependencies...")
+#     deps = DependenciesPPG()
+
+#     print(f"[INFO] Reading audio from {wav_path}")
+#     wave = feat.read_wav_kaldi(wav_path)
+
+#     # Choose either full or monophone PPG
+#     use_monophone = True
+
+#     if use_monophone:
+#         print("[INFO] Computing MONOPHONE PPG...")
+#         ppg = compute_monophone_ppg(wave, deps.nnet, deps.lda, deps.monophone_trans)
+#     else:
+#         print("[INFO] Computing FULL PPG...")
+#         feats = compute_feat_for_nnet_internal(wave, deps.lda)
+#         ppg = compute_full_ppg(deps.nnet, feats).numpy()
+
+#     print(f"[INFO] PPG shape: {ppg.shape}")
+#     print(f"[INFO] Saving to {output_path}")
+#     np.save(output_path, ppg)
+
+#     import matplotlib.pyplot as plt
+
+#     # Plot and save the PPG as an image
+#     plt.figure(figsize=(10, 4))
+#     plt.imshow(ppg.T, aspect='auto', origin='lower', interpolation='none')
+#     plt.colorbar(format='%+2.0f dB')
+#     plt.title("Computed PPG")
+#     plt.xlabel("Time Frames")
+#     plt.ylabel("PPG Dimensions")
+
+#     plot_path = output_path.replace(".npy", ".png")
+#     plt.tight_layout()
+#     plt.savefig(plot_path)
+#     print(f"[INFO] Plot saved to {plot_path}")

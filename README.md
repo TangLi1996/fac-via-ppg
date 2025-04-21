@@ -1,7 +1,7 @@
 # Foreign Accent Conversion by Synthesizing Speech from Phonetic Posteriorgrams
 
 This repository hosts the code we used to
-prepare our interspeech'19 paper titled "[Foreign Accent Conversion by Synthesizing Speech from Phonetic Posteriorgrams](https://www.isca-speech.org/archive/Interspeech_2019/pdfs/1778.pdf)"
+prepare our interspeech'19 paper titled "[Foreign Accent Conversion by Synthesizing Speech from Phonetic Posteriorgrams](https://www.isca-archive.org/interspeech_2019/zhao19f_interspeech.pdf)"
 
 ### Install
 
@@ -17,12 +17,17 @@ conda env create -f environment.yml
 
 # Activate the installed environment
 conda activate ppg-speech
+conda activate ppg-speech-cuda12
 
 # Compile protocol buffer to get the data_utterance_pb2.py file
 protoc -I=src/common --python_out=src/common src/common/data_utterance.proto
 
 # Include src in your PYTHONPATH
 export PYTHONPATH=$PROJECT_ROOT_DIR/src:$PYTHONPATH
+```
+Path on GPU
+```bash
+export PYTHONPATH='/home/tang/PPG-Mel/fac-via-ppg/src':'/home/tang/anaconda3/envs/ppg-speech/lib/python3.7'
 ```
 
 If `conda` complains that some packages are missing, it is very likely that you can find a similar version of that package on anaconda's archive.
@@ -47,9 +52,10 @@ Change default parameters in `src/common/hparams.py:create_hparams()`.
 The training and validation data should be specified in text files, see `data/filelists` for examples.
 
 ```bash
-cd src/script
-python train_ppg2mel.py
+cd src
+python script/train_ppg2mel.py
 ```
+nohup python script/train_ppg2mel.py > train-koren-YKWK-2.log 2>&1 &
 The `FP16` mode will not work, unfortunately :(
 
 ### Train WaveGlow model
@@ -59,6 +65,7 @@ Change the default parameters in `src/waveglow/config.json`. The training data s
 cd src/script
 python train_waveglow.py
 ```
+nohup python train_waveglow.py > train-waveglow.log 2>&1 &
 
 ### View training progress
 You should find a dir `log` in all of your output dirs, that is the `LOG_DIR` you should use below.
@@ -66,10 +73,16 @@ You should find a dir `log` in all of your output dirs, that is the `LOG_DIR` yo
 ```bash
 tensorboard --logdir=${LOG_DIR}
 ```
+tensorboard --logdir="/home/tang/PPG-Mel/fac-via-ppg/src/script/output/ppg-koren-YKWK/logs"
+
+tensorboard --logdir="/home/tang/PPG-Mel/fac-via-ppg/src/script/output/waveglow/log"
 
 ### Generate speech synthesis
 Use `src/script/generate_synthesis.py`, you can find pre-trained models in the [Links](#Links) section.
 
+```bash
+python generate_synthesis.py --ppg2mel_model "/home/tang/PPG-Mel/fac-via-ppg/src/script/output/ppg-koren-YKWK/checkpoint_40000" --waveglow_model "/home/tang/PPG-Mel/fac-via-ppg/src/script/output/waveglow/waveglow_1210000" --teacher_utterance_path "/home/tang/PPG-Mel/fac-via-ppg/recordings/L1/arctic_b0498.wav" --output_dir "/home/tang/PPG-Mel/fac-via-ppg/src/script/output/synthesis"
+```
 ```bash
 generate_synthesis.py [-h] --ppg2mel_model PPG2MEL_MODEL
                            --waveglow_model WAVEGLOW_MODEL

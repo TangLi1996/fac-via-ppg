@@ -45,7 +45,7 @@ def create_hparams(**kwargs):
         # Experiment Parameters        #
         ################################
         "epochs": 1000,
-        "iters_per_checkpoint": 200,
+        "iters_per_checkpoint": 5000, # 200 0riginal
         "seed": 16807,
         "dynamic_loss_scaling": True,
         "fp16_run": False,
@@ -54,24 +54,24 @@ def create_hparams(**kwargs):
         "dist_url": "tcp://localhost:54321",
         "cudnn_enabled": True,
         "cudnn_benchmark": False,
-        "output_directory": None,  # Directory to save checkpoints.
+        "output_directory": '/home/tang/PPG-Mel/fac-via-ppg/src/script/output/ppg-koren-YKWK',  # Directory to save checkpoints.
         # Directory to save tensorboard logs. Just keep it like this.
-        "log_directory": 'log',
-        "checkpoint_path": '',  # Path to a checkpoint file.
-        "warm_start": False,  # Load the model only (warm start)
+        "log_directory": '/home/tang/PPG-Mel/fac-via-ppg/src/script/output/ppg-koren-YKWK/logs',
+        "checkpoint_path": '/home/tang/PPG-Mel/fac-via-ppg/src/script/output/ppg-koren-YKWK/checkpoint_145000',  # Path to a checkpoint file. # 53000 + 145000 + 100000
+        "warm_start": True,  # Load the model only (warm start)
         "n_gpus": 1,  # Number of GPUs
         "rank": 0,  # Rank of current gpu
-        "group_name": 'group_name',  # Distributed group name
+        "group_name": 'groupname',  # Distributed group name
 
         ################################
         # Data Parameters             #
         ################################
         # Passed as a txt file, see data/filelists/training-set.txt for an
         # example.
-        "training_files": '',
+        "training_files": '/home/tang/PPG-Mel/fac-via-ppg/data/filelists/training-set-koren-YKWK.txt',
         # Passed as a txt file, see data/filelists/validation-set.txt for an
         # example.
-        "validation_files": '',
+        "validation_files": '/home/tang/PPG-Mel/fac-via-ppg/data/filelists/validation-set-koren-YKWK.txt',
         "is_full_ppg": True,  # Whether to use the full PPG or not.
         "is_append_f0": False,  # Currently only effective at sentence level
         "ppg_subsampling_factor": 1,  # Sub-sample the ppg & acoustic sequence.
@@ -84,8 +84,8 @@ def create_hparams(**kwargs):
         "load_feats_from_disk": False,  # Remember to set the path.
         # Mutually exclusive with 'load_feats_from_disk', will overwrite
         # 'feats_cache_path' if set.
-        "is_cache_feats": False,
-        "feats_cache_path": '',
+        "is_cache_feats": True,
+        "feats_cache_path": '/home/tang/PPG-Mel/fac-via-ppg/src/script/output/ppg-koren-YKWK/cache',  # Path to the cache directory.
 
         ################################
         # Audio Parameters             #
@@ -196,7 +196,7 @@ def create_hparams_stage(**kwargs):
         'is_full_ppg': True,
         'is_large_set': False,
         'is_skip_sil': False,
-        'iters_per_checkpoint': 100,
+        'iters_per_checkpoint': 5000, # Origianl 100
         'learning_rate': 0.0001,
         'load_feats_from_disk': True,
         'log_directory': 'log',

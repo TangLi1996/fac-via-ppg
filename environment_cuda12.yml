@@ -1,4 +1,4 @@
-name: ppg-speech
+name: ppg-speech-cuda12
 channels:
   - pytorch
   - pykaldi
@@ -97,9 +97,11 @@ dependencies:
   - scipy=1.1.0=py37he2b7bc3_2
   - pykaldi=0.1.0=py37h82fe3e7_1
   - cuda80=1.0=h205658b_0
-  - pytorch=1.0.0=py3.7_cuda8.0.61_cudnn7.1.2_1
+  # - pytorch=1.0.0=py3.7_cuda8.0.61_cudnn7.1.2_1
   - pip:
     - textgrid==1.4
-    - torch==1.0.0
-prefix: /home/tang/miniconda3/envs/ppg-speech
+    - torch --index-url https://download.pytorch.org/whl/cu126
+    - torchvision --index-url https://download.pytorch.org/whl/cu126
+    - torchaudio --index-url https://download.pytorch.org/whl/cu126
+prefix: /home/tang/miniconda3/envs/ppg-speech-cuda12
 

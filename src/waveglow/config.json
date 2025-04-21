@@ -1,16 +1,16 @@
 {
     "train_config": {
-        "output_directory": "",
+        "output_directory": "/home/tang/PPG-Mel/fac-via-ppg/src/script/output/waveglow",
         "epochs": 10000,
-        "learning_rate": 1e-5,
+        "learning_rate": 1e-4,
         "sigma": 0.7071,
         "iters_per_checkpoint": 2500,
         "batch_size": 3,
         "seed": 16807,
-        "checkpoint_path": ""
+        "checkpoint_path": "/home/tang/PPG-Mel/fac-via-ppg/src/script/output/waveglow/waveglow_917500"
     },
     "data_config": {
-        "training_files":"",
+        "training_files":"/home/tang/PPG-Mel/fac-via-ppg/data/filelists/training-set-koren-YKWK.txt",
         "segment_length": 10000,
         "sampling_rate": 16000,
         "filter_length": 1024,

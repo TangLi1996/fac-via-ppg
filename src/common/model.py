@@ -130,6 +130,10 @@ class Prenet(nn.Module):
              for (in_size, out_size) in zip(in_sizes, sizes)])
 
     def forward(self, x):
+        # print("[DEBUG] Prenet input shape:", x.shape)
+        if torch.isnan(x).any() or torch.isinf(x).any():
+            print("[ERROR] Found NaNs or Infs in prenet input!")
+            exit(1)
         for linear in self.layers:
             x = F.dropout(F.relu(linear(x)), p=0.5, training=True)
         return x
@@ -213,8 +217,10 @@ class Encoder(nn.Module):
                             batch_first=True, bidirectional=True)
 
     def forward(self, x, input_lengths):
+        # print("[DEBUG] Encoder inputs shape:", x.shape)
         # x: (B, D, T) -> (B, T, D) -> (B, D, T)
         x = self.prenet(x.transpose(1, 2)).transpose(1, 2)
+        # x = self.prenet(x)
 
         for conv in self.convolutions:
             x = F.dropout(F.relu(conv(x)), 0.5, self.training)
@@ -237,6 +243,7 @@ class Encoder(nn.Module):
     def inference(self, x):
         # x: (B, D, T) -> (B, T, D) -> (B, D, T)
         x = self.prenet(x.transpose(1, 2)).transpose(1, 2)
+        # x = self.prenet(x)
 
         for conv in self.convolutions:
             x = F.dropout(F.relu(conv(x)), 0.5, self.training)
